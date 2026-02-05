@@ -1,13 +1,18 @@
+# Web Framework & Server
 fastapi
 uvicorn
 python-multipart
 
+# Data Processing & Parsing
 pandas
 openpyxl
 pdfplumber
+xlsxwriter
 
+# AI & Environment
 openai
 python-dotenv
 
-psycopg2-binary
+# Security & Database
 cryptography
+psycopg2-binary
