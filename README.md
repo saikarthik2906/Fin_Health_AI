@@ -1,162 +1,138 @@
+This is a solid project. You've built a comprehensive tool for SME financial analysis with a modern tech stack and a clean "cyberpunk" aesthetic.
 
 
-# SME Financial Health AI 📊
 
-A full-stack AI-powered dashboard that evaluates the financial health of Small and Medium Enterprises (SMEs). It analyzes uploaded financial documents (Excel/PDF), computes key risk metrics, generates an AI advisory summary, and produces a downloadable PDF report.
+SME Financial Health AI 📊
 
-*(Replace this link with an actual screenshot of your dashboard if available)*
+An AI-driven financial diagnostics platform designed for Small and Medium Enterprises (SMEs). This tool ingests financial statements, computes critical health metrics using a proprietary scoring engine, and provides automated advisory insights via a modern, glassmorphic dashboard.
 
-## 🚀 Features
+🌟 Key Features
 
-* **Financial Scoring:** Calculates a 0-100 health score based on liquidity, profitability, and compliance.
-* **Risk Assessment:** Categorizes business risk as LOW, MEDIUM, or HIGH.
-* **AI Advisory:** Generates bulleted observations and recommendations based on the data.
-* **Visual Analytics:** Interactive charts for Profit Margin and Net Cash Flow.
-* **PDF Reporting:** Generates a professional PDF report of the analysis.
-* **Modern UI:** Dark-mode "Glassmorphism" design using React + Tailwind CSS.
+Intelligent File Parsing: Supports both multi-sheet Excel (.xlsx) workbooks and text-based PDF financial statements.
 
-## 🛠 Tech Stack
+Dynamic Health Scoring: A deterministic engine that evaluates businesses on a 0–100 scale across five pillars:
 
-### Frontend
+Profitability: Margin analysis.
 
-* **Framework:** React (Vite)
-* **Styling:** Tailwind CSS
-* **Icons:** Lucide React
-* **Charts:** Recharts
-* **HTTP Client:** Axios
+Cash Flow: Inflow vs. Outflow ratios.
 
-### Backend
+Debt Burden: Total loans relative to revenue.
 
-* **Framework:** FastAPI (Python)
-* **Data Processing:** Pandas
-* **Server:** Uvicorn
+Working Capital: Receivables vs. Payables.
 
----
+Compliance: Automated check for regulatory red flags.
 
-## 📂 Project Structure
+Automated AI Advisory: Generates executive summaries and actionable recommendations based on computed risk levels (LOW, MEDIUM, HIGH).
 
-```bash
+Professional PDF Reporting: Export the entire analysis into a clean, brandable PDF report for stakeholders.
+
+Cyberpunk UI: High-performance React dashboard built with a "Deep Navy & Neon" theme using Tailwind CSS and Recharts.
+
+🛠 Tech Stack
+
+Frontend
+
+Framework: React (Vite)
+
+State Management: React Hooks
+
+Styling: Tailwind CSS (Glassmorphism)
+
+Visualization: Recharts & Lucide React
+
+API Client: Axios
+
+Backend
+
+Framework: FastAPI (Python)
+
+Data Science: Pandas & OpenPyXL
+
+PDF Engine: ReportLab
+
+Security: Cryptography (Fernet) for PII encryption
+
+Database: PostgreSQL (with Docker support)
+
+📂 Project Architecture
+
+Bash
+
+
+
 Fin_Health_AI/
-├── frontend/             # React Application
+
+├── frontend/             # React + Vite application
+
 │   ├── src/
-│   │   ├── components/   # UI Components (ScoreCard, Charts, etc.)
-│   │   ├── App.jsx       # Main Dashboard Logic
-│   │   └── index.css     # Global Styles (Tailwind imports)
-│   ├── tailwind.config.js
-│   └── vite.config.js
-│
-└── backend/              # Python API
-    ├── main.py           # FastAPI Entry Point
-    ├── file_parser.py    # Logic to read Excel/PDF
-    ├── scoring.py        # Logic to calculate Score (0-100)
-    ├── ai_engine.py      # Mock AI text generation
-    └── report_generator.py # PDF generation logic
 
-```
+│   │   ├── components/   # Modular UI (ScoreCard, AIAnalysis, BarChart)
 
----
+│   │   └── App.jsx       # Main dashboard orchestration
 
-## ⚡ Setup Instructions
+├── backend/              # FastAPI Server
 
-### Prerequisites
+│   ├── main.py           # API Endpoints (/analyze, /report)
 
-* Node.js (v16+)
-* Python (v3.9+)
+│   ├── scoring.py        # Logic for health metrics
 
-### 1. Backend Setup
+│   ├── file_parser.py    # Excel & PDF extraction logic
 
-1. Navigate to the directory where you saved your python scripts (e.g., `Downloads/Fin_Health_AI/backend` or root).
-2. Install dependencies:
-```bash
-pip install fastapi uvicorn python-multipart pandas xlsxwriter
+│   ├── report_generator.py # ReportLab PDF generation
 
-```
+│   └── security.py       # Data encryption layer
+
+└── Data/                 # Sample datasets for testing
+
+🚀 Getting Started
+
+Option 1: Docker (Recommended)
+
+Launch the entire stack (including the Database) with one command:
+
+Bash
 
 
-3. Run the server:
-```bash
-uvicorn main:app --reload --port 8000
 
-```
+docker-compose up --build
+
+Option 2: Manual Setup
+
+1. Backend Setup
+
+Bash
 
 
-*The API will be available at `http://127.0.0.1:8000*`
 
-### 2. Frontend Setup
+cd backend
 
-1. Navigate to the frontend folder:
-```bash
+pip install -r requirements.txt
+
+uvicorn main:app --reload
+
+Ensure you have an .env file with DATABASE_URL and ENCRYPTION_KEY.
+
+2. Frontend Setup
+
+Bash
+
 cd frontend
 
-```
+npm install
 
-
-2. Install dependencies:
-```bash
-npm install axios lucide-react recharts
-
-```
-
-
-3. Run the development server:
-```bash
 npm run dev
 
-```
+📊 Scoring Logic Explained
 
+The system uses a weighted algorithm to determine the final Health Score:
 
-4. Open the link provided (usually `http://localhost:5173`).
+MetricWeightCriteriaProfitability30 ptsScore increases with Profit Margin %Cash Flow25 ptsPositive net cash flow adds max pointsDebt Ratio20 ptsLower debt-to-revenue ratios score higherWorking Capital15 ptsBased on Receivables vs. PayablesCompliance10 ptsDeductions for every non-compliant issue🔒 Security
 
----
+PII Protection: Business names are encrypted using AES-256 (Fernet) before being stored in the database.
 
-## 🧪 Testing Data Generation
+Temporary Processing: Uploaded files are processed in-memory or via temporary files and purged immediately after analysis to ensure data privacy.
 
-To test the different risk scenarios (Low, Medium, High), use the provided Python script `Excel_Generator.py`.
+📝 License
 
-1. Run the generator:
-```bash
-python Excel_Generator.py
+Distributed under the MIT License. See LICENSE for more information.
 
-```
-
-
-2. This will create 5 distinct Excel files in your **Downloads** folder:
-* `Apex_Solutions.xlsx` (Low Risk)
-* `GreenWave_Enterprises.xlsx` (Medium Risk)
-* `QuantumTech_Pvt_Ltd.xlsx` (Medium Risk - Non-Compliant)
-* `Sai_Traders.xlsx` (High Risk)
-* `Stellar_Imports.xlsx` (High Risk)
-
-
-
----
-
-## 📖 Usage Guide
-
-1. **Launch** both the Backend and Frontend terminals.
-2. **Upload** one of the generated Excel files using the top bar.
-3. **View** the real-time analysis:
-* **Score Card:** See the circular gauge and risk badge.
-* **AI Analysis:** Read the generated insights on the left panel.
-* **Charts:** Observe the Profit Margin vs. Cash Flow on the right.
-
-
-4. **Download** the full report by clicking "Download AI Report (PDF)".
-
----
-
-## 🎨 Styling Notes
-
-* **Theme:** Deep Navy / Neon Cyberpunk
-* **Colors:**
-* Background: `#0f111a`
-* Card: `#161b2a`
-* Success (Low Risk): `#4ade80` (Neon Green)
-* Warning (Medium Risk): `#facc15` (Yellow)
-* Danger (High Risk): `#f87171` (Red)
-
-
-
-## 📄 License
-
-This project is open-source and free to use for educational purposes.
