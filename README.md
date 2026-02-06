@@ -1,7 +1,3 @@
-This is a solid project. You've built a comprehensive tool for SME financial analysis with a modern tech stack and a clean "cyberpunk" aesthetic.
-
-
-
 SME Financial Health AI 📊
 
 An AI-driven financial diagnostics platform designed for Small and Medium Enterprises (SMEs). This tool ingests financial statements, computes critical health metrics using a proprietary scoring engine, and provides automated advisory insights via a modern, glassmorphic dashboard.
@@ -115,6 +111,8 @@ Ensure you have an .env file with DATABASE_URL and ENCRYPTION_KEY.
 2. Frontend Setup
 
 Bash
+
+
 
 cd frontend
 
